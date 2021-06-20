@@ -1,13 +1,14 @@
 import { useLocation, useParams } from "react-router-dom";
 import Moment from "react-moment";
 import useFetch from "./useFetch";
+import { baseUrl } from "./config";
 const InterviewDetails = () => {
   const { uuid } = useParams();
   const {
     data: interview,
     isPending,
     error,
-  } = useFetch(`http://localhost:3000/v1/interviews/${uuid}`);
+  } = useFetch(`${baseUrl}/v1/interviews/${uuid}`);
 
   return (
     <div className="interview-details">

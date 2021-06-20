@@ -5,6 +5,7 @@ import makeAnimated from "react-select/animated";
 import useFetch from "./useFetch";
 import { useHistory, useParams } from "react-router-dom";
 import Moment from "react-moment";
+import { baseUrl } from "./config";
 
 const RescheduleInterview = () => {
   const { uuid } = useParams();
@@ -12,19 +13,19 @@ const RescheduleInterview = () => {
     data: candidateData,
     isPending: isCandidateDataPending,
     error: candidateDataError,
-  } = useFetch("http://localhost:3000/v1/participants/candidates");
+  } = useFetch(`${baseUrl}/v1/participants/candidates`);
 
   const {
     data: interviewerData,
     isPending: isInterviewerDataPending,
     error: interviewerDataError,
-  } = useFetch("http://localhost:3000/v1/participants/interviewers");
+  } = useFetch(`${baseUrl}/v1/participants/interviewers`);
 
   const {
     data: interviewData,
     isPending: isInterviewDataPending,
     error: interviewDataError,
-  } = useFetch(`http://localhost:3000/v1/interviews/${uuid}`);
+  } = useFetch(`${baseUrl}/v1/interviews/${uuid}`);
 
   const animatedComponents = makeAnimated();
   const [date, setDate] = useState(new Date());
@@ -67,7 +68,7 @@ const RescheduleInterview = () => {
     };
     console.log(interview);
 
-    fetch(`http://localhost:3000/v1/interviews/${uuid}`, {
+    fetch(`${baseUrl}/v1/interviews/${uuid}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(interview),

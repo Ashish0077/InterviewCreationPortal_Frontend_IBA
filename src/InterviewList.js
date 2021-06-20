@@ -1,9 +1,10 @@
 import Moment from "react-moment";
 import { Link } from "react-router-dom";
+import { baseUrl } from "./config";
 
 const InterviewList = ({ interviews, title }) => {
   const handleDelete = (uuid) => {
-    fetch(`http://localhost:3000/v1/interviews/${uuid}`, {
+    fetch(`${baseUrl}/v1/interviews/${uuid}`, {
       method: "DELETE",
     })
       .then((res) => {
