@@ -76,7 +76,9 @@ const ScheduleInterview = () => {
         console.log(data);
         setIsPending(false);
         console.log("Successfully added interview");
-        alert("Successfully scheduled interview!");
+        alert(
+          "Successfully scheduled interview! and email notification is sent."
+        );
         history.push("/");
       })
       .catch((err) => {

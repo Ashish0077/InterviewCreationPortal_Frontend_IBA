@@ -44,26 +44,6 @@ const RescheduleInterview = () => {
     return options;
   };
 
-  const getCandidateOptions = (data) => {
-    console.log(data);
-    const options = [];
-    for (let d of data) {
-      if (d.role === "candidate")
-        options.push({ label: d.email, value: d.email });
-    }
-    return options;
-  };
-
-  const getInterviewerOptions = (data) => {
-    console.log(data);
-    const options = [];
-    for (let d of data) {
-      if (d.role !== "candidate")
-        options.push({ label: d.email, value: d.email });
-    }
-    return options;
-  };
-
   const handleSubmit = (e) => {
     setIsPending(true);
     e.preventDefault();
@@ -104,7 +84,9 @@ const RescheduleInterview = () => {
         console.log(data);
         setIsPending(false);
         console.log("Successfully updated interview");
-        alert("Successfully Updated Interview");
+        alert(
+          "Successfully Rescheduled Interview and email notifications are sent!"
+        );
         history.push("/");
       })
       .catch((err) => {
