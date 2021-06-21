@@ -4,20 +4,20 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import useFetch from "./useFetch";
 import { useHistory } from "react-router-dom";
-import { baseUrl } from "./config";
+import { API_URL } from "./config/config.js";
 
 const ScheduleInterview = () => {
   const {
     data: candidateData,
     isPending: isCandidateDataPending,
     error: candidateDataError,
-  } = useFetch(`${baseUrl}/v1/participants/candidates`);
+  } = useFetch(`${API_URL}/v1/participants/candidates`);
 
   const {
     data: interviewerData,
     isPending: isInterviewerDataPending,
     error: interviewerDataError,
-  } = useFetch(`${baseUrl}/v1/participants/interviewers`);
+  } = useFetch(`${API_URL}/v1/participants/interviewers`);
 
   const animatedComponents = makeAnimated();
   const [date, setDate] = useState(new Date());
@@ -60,7 +60,7 @@ const ScheduleInterview = () => {
     };
     console.log(interview);
 
-    fetch(`${baseUrl}/v1/interviews`, {
+    fetch(`${API_URL}/v1/interviews`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(interview),
